@@ -2,13 +2,13 @@
   
   
 ## Local에 Repository Clone
-1. (STS 상단 메뉴) : Window > Show View > Other > Git > Git Repositories 선택
-2. (Git Repositories) : Clone a Git repository > 깃허브URL 넣으면 자동완성 > Clone되는 경로기억   
+1. (STS 상단 메뉴) : [Window] > [Show View] > [Other] > [Git] > [Git Repositories] 선택
+2. (Git Repositories) : [Clone a Git repository] > 깃허브URL 넣으면 자동완성 > Clone되는 경로기억   
   
 ## STS에 Repository Clone
-1. (왼쪽 Pakage Explorer) : import > General > Projects from Folder or Archive   
+1. (왼쪽 Pakage Explorer) : [import] > [General] > [Projects from Folder or Archive]   
  ** import source부분에 경로입력, 아래 Folder 두 개 뜨는데 위에 체크해제 **
-2. (STS 상단 메뉴) : Window > Show View > Terminal
+2. (STS 상단 메뉴) : [Window] > [Show View] > [Terminal]
 3. (아래 터미널) : open a terminal(모니터모양) 클릭 후 그대로 OK한 뒤 STS에 Clone한 경로로 이동   
   
 ## 예시 (환경마다 다를 수 있음)
