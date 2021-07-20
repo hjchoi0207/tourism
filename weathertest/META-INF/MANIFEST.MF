@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: weathertest
+Bundle-SymbolicName: weathertest
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-16
+Automatic-Module-Name: weathertest
+Export-Package: com.ggoreb.weathertest,
+ com.ggoreb.weathertest.controller,
+ com.ggoreb.weathertest.model,
+ com.ggoreb.weathertest.repository
