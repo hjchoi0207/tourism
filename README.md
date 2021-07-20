@@ -1,4 +1,5 @@
 ## STS 환경에서 Github 연동하는 과정입니다.
+  - 반드시 개인 브랜치에서 작업 후 merge한다.
   - 브랜치명은 각자의 이름으로한다
   - push전 master branch pull은 필수로 이행한다.
   - 별도의 Pakage 추가 시 카톡에 알려준다
