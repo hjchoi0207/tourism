@@ -62,8 +62,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/areaList")
-	public String areaList(Model model) {
-		List<AreaBasedList> list = areaBasedList.findAll();
+	public String areaList(@RequestParam("areacode") Integer areacode, Model model) {
+		List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
 		model.addAttribute("list", list);
 		return "areaList";
 	}

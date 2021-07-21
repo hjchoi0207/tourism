@@ -1,15 +1,11 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 
-<!--<head>
+<head >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-</head>
--->
-<head th:replace="common/head">
-</head>
-
-<!--	<style>
+	<style>
 		table {
 			border-spacing: 0px;
 		}
@@ -19,40 +15,50 @@
 			margin : 10px;
 			width : 300px;
 			height : 350px;
+			
 		}
 		.card-body{
+			padding-left : 10px;
 			width : 300px;
+			border : 1px solid black;
+			border-top: none;
+			box-sizing : border-box;
 		}
-	</style>-->
+		.card-title{
+			font-weight: bold;
+			color : red
+		}
+	</style>
+</head>
+
+
+<!--<head th:replace="common/head">
+</head>-->
+
+<!-- 대구, 부산, 울산, 경남, 경북 마다 findAllByAreacode로 가져오기-->
+
 <body>
-	<div th:each="area : ${list}" th:id="cardbox">
+
+	<nav th:replace="common/nav">
+	</nav>
+	
+	<div th:each="area : ${list}" id="cardbox">
 		<div class="card" style="width: 18rem;">
-			<img th:src="${area.firstimage}" class="card-img-top" alt="..."  onerror="link"
-			style="width: 300px; height: 200px;">
+			<img th:src="${area.firstimage}" class="card-img-top" alt="..." onerror="link"
+				style="width: 300px; height: 200px;">
 			<div class="card-body">
 				<p class="card-title" th:text="${area.title}"></p>
-				<p class="card-text" th:text="${area.addr1}"></p>
-				<p class="card-text" th:text="${area.tel}"></p>
+				<a th:href="@{'https://m.map.naver.com/search2/search.naver?query=' + ${area.addr1}}"
+				th:text="${area.addr1}"></a>
+				<!--<p class="card-text" th:text="${area.addr1}"></p>-->
+				<p class="card-text" th:text="'Tel :' +  ${area.tel}"></p>
 				<!--<a href="#" class="btn btn-primary">Go somewhere</a> -->
 			</div>
 		</div>
 	</div>
 
-<!--		<tr>
-			<td rowspan='3'>
-				<img th:src="${area.firstimage}" style="width: 200px; height: 200px;" onerror="link">
-			</td>
-			<td th:text="${area.title}"></td>
-		</tr>
-
-		<tr>
-			<td th:text="${area.addr1}"></td>
-		</tr>
-
-		<tr>
-			<td th:text="${area.tel}"></td>
-		</tr>-->
-
-	</table>-->
-
+	<footer th:replace="common/footer">
+	</footer>
 </body>
+
+</html>
