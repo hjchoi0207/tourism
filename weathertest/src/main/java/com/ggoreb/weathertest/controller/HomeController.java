@@ -57,5 +57,24 @@ public class HomeController {
 
 		return "weather";
 	}
+	
+	@GetMapping("/")
+	public String main(Model model, @RequestParam(defaultValue = "1") int page, Pageable pageable) {
+		List<Covid> covidList = covidRepository.findAll();
+		
+		pageable = PageRequest.of(page-1, 10);
 
+		Page<AreaTemp> pageList = areaTempRepository.findAll(pageable);
+
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 9;
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+
+		model.addAttribute("covidList", covidList);
+		model.addAttribute("areaList", pageList);
+
+		return "index";
+	}
 }
