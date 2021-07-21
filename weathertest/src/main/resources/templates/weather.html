@@ -13,19 +13,36 @@
 	</nav>
 
 	<div class="container-fluid text-center">
-		<div class="row content">
+		<div class="row">
 
 			<!--좌측 메뉴-->
-			<div th:replace="common/left">
+			<div class="left">
+				<p><a href="#">테스트1</a></p>
+				<p><a href="#">테스트2</a></p>
+				<p><a href="#">테스트3</a></p>
 			</div>
 
 			<!--여기서부터 본문입니다-->
-			<div class="col-sm-8 text-left">
+			<div class="content">
 				<div class="weatherCovidInfo">
 					<!--지역 날씨 미세먼지-->
 					<div class="weatherInfo">
 						<h3 style="font-weight: bold;">날씨 현황</h3>
 						<img src="/map.jpg" alt="지도" />
+						<th:block th:each="air : ${airList}">
+							<p class="busanAir" th:if="${air.areacode == 6}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+							<p class="daeguAir" th:if="${air.areacode == 4}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+							<p class="ulsanAir" th:if="${air.areacode == 7}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+							<p class="northAir" th:if="${air.areacode == 35}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+							<p class="southAir" th:if="${air.areacode == 36}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+						</th:block>
+						<th:block th:each="weather : ${weatherList}">
+							<p class="busanWeather" th:if="${weather.areacode == 6}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+							<p class="daeguWeather" th:if="${weather.areacode == 4}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+							<p class="ulsanWeather" th:if="${weather.areacode == 7}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+							<p class="northWeather" th:if="${weather.areacode == 35}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+							<p class="southWeather" th:if="${weather.areacode == 36}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+						</th:block>
 					</div>
 					<!--코로나정보-->
 					<div class="covidInfo">
@@ -55,7 +72,7 @@
 				</div>
 				<!--추천 여행지-->
 				<div class="recommend">
-					<h2 style="text-align: center;">추천 여행지!</h2>
+					<h2 style="text-align: center; font-weight: bold;">추천 여행지!</h2>
 					<table class="table">
 						<thead>
 							<tr class="text-center thead-dark">
@@ -84,7 +101,13 @@
 			<!--여기까지 본문입니다-->
 
 			<!--우측 메뉴-->
-			<div th:replace="common/right">
+			<div class="right">
+				<div class="well">
+					<p>광고1</p>
+				</div>
+				<div class="well">
+					<p>광고2</p>
+				</div>
 			</div>
 
 		</div>

@@ -9,10 +9,10 @@ import lombok.Data;
 
 @Data
 @Entity
-public class AirCondition {
+public class Air {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
-	Integer stationCode;
-	Integer airConditionValue;
+	Long id;
+	String airInfo;
+	Integer areacode;
 }
