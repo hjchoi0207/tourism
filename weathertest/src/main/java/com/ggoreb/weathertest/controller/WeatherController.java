@@ -29,8 +29,8 @@ public class WeatherController {
 			requestEntity = RequestEntity
 					.get(new URI("http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?"
 							+ "serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D"
-							+ "&dataType=json" + "&numOfRows=10" + "&pageNo=1" + "&base_date=20210719"
-							+ "&base_time=2000" + "&nx=89" + "&ny=90"))
+							+ "&dataType=json" + "&numOfRows=10" + "&pageNo=1" + "&base_date=20210720"
+							+ "&base_time=2000" + "&nx=91" + "&ny=77"))
 					.build();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();

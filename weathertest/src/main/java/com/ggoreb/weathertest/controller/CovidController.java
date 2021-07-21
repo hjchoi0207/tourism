@@ -30,10 +30,10 @@ public class CovidController {
 	public void covid() {
 		Covid covid = new Covid();
 		try {
-			String url="http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210720&endCreateDt=20210720";
+			String url="http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210721&endCreateDt=20210721";
 			
 			Document documentInfo = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url);
-			
+			 
 			//root tag
 			documentInfo.getDocumentElement().normalize();
 			
