@@ -37,6 +37,9 @@ public class HomeController {
 	AreaBasedListRepository areaRepository;
 	@Autowired
 	AreaTempRepository areaTempRepository;
+	
+	@Autowired
+	AreaBasedListRepository areaBasedList; // 지역관광정보
 
 	@GetMapping("/chu")
 	public String index(Model model, @RequestParam(defaultValue = "1") int page, Pageable pageable) {
@@ -56,6 +59,13 @@ public class HomeController {
 		model.addAttribute("areaList", pageList);
 
 		return "weather";
+	}
+	
+	@GetMapping("/areaList")
+	public String areaList(Model model) {
+		List<AreaBasedList> list = areaBasedList.findAll();
+		model.addAttribute("list", list);
+		return "areaList";
 	}
 
 }
