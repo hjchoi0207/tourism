@@ -44,7 +44,7 @@ public class ApiTest {
 	private final String TourKey = "MUMreSgE%2BSS7myJQ4TQvAZ4v3GKdHjY4w58566xQLA%2Fvt702075b8IUFHfFyv96B3l6j%2FyksrgR%2FY2yAeUIruA%3D%3D";
 	private final String TourUrl = "http://api.visitkorea.or.kr/openapi/service/rest/KorService";
 
-	// **** [ AreaBasedList ] AreaCode로 관광지정보 조회 *****************
+	// **** [ AreaBasedList ] AreaCode로 관광지정보 조회 ****
 	// addr1, areaCode, x,y, tel, title, firstimage
 	@GetMapping("/api3")
 	public List<Map<String, Object>> allowBasic3() throws Exception {
