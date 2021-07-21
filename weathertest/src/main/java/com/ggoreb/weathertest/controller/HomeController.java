@@ -35,7 +35,11 @@ public class HomeController {
 	AreaTempRepository areaTempRepository;
 	
 	@Autowired
+<<<<<<< HEAD
 	AirRepository airRepository;
+=======
+	AreaBasedListRepository areaBasedList; // 지역관광정보
+>>>>>>> 24296a1c29a7e3ed3330786dd7360f2ec75a1ff8
 
 	@Autowired
 	WeatherRepository weatherRepository;
@@ -63,6 +67,13 @@ public class HomeController {
 		model.addAttribute("weatherList", weatherList);
 		
 		return "weather";
+	}
+	
+	@GetMapping("/areaList")
+	public String areaList(@RequestParam("areacode") Integer areacode, Model model) {
+		List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
+		model.addAttribute("list", list);
+		return "areaList";
 	}
 
 }
