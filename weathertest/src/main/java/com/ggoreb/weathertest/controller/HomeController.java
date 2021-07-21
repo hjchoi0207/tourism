@@ -15,11 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ggoreb.weathertest.model.Air;
 import com.ggoreb.weathertest.model.AreaBasedList;
 import com.ggoreb.weathertest.model.AreaTemp;
 import com.ggoreb.weathertest.model.Covid;
 import com.ggoreb.weathertest.model.Weather;
-import com.ggoreb.weathertest.repository.AirConditionRepository;
+import com.ggoreb.weathertest.repository.AirRepository;
 import com.ggoreb.weathertest.repository.AreaBasedListRepository;
 import com.ggoreb.weathertest.repository.AreaTempRepository;
 import com.ggoreb.weathertest.repository.CovidRepository;
@@ -29,15 +30,16 @@ import com.ggoreb.weathertest.repository.WeatherRepository;
 public class HomeController {
 	@Autowired
 	CovidRepository covidRepository;
-	@Autowired
-	WeatherRepository weatherRepository;
-	@Autowired
-	AirConditionRepository airConditionRepository;
-	@Autowired
-	AreaBasedListRepository areaRepository;
+
 	@Autowired
 	AreaTempRepository areaTempRepository;
+	
+	@Autowired
+	AirRepository airRepository;
 
+	@Autowired
+	WeatherRepository weatherRepository;
+	
 	@GetMapping("/chu")
 	public String index(Model model, @RequestParam(defaultValue = "1") int page, Pageable pageable) {
 		List<Covid> covidList = covidRepository.findAll();
@@ -45,7 +47,10 @@ public class HomeController {
 		pageable = PageRequest.of(page-1, 10);
 
 		Page<AreaTemp> pageList = areaTempRepository.findAll(pageable);
-
+		
+		List<Air> airList = airRepository.findAll();
+		List<Weather> weatherList = weatherRepository.findAll();
+		
 		int startPage = (page - 1) / 10 * 10 + 1;
 		int endPage = startPage + 9;
 		model.addAttribute("startPage", startPage);
@@ -54,7 +59,9 @@ public class HomeController {
 
 		model.addAttribute("covidList", covidList);
 		model.addAttribute("areaList", pageList);
-
+		model.addAttribute("airList", airList);
+		model.addAttribute("weatherList", weatherList);
+		
 		return "weather";
 	}
 
