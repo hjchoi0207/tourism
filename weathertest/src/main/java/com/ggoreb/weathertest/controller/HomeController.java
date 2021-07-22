@@ -33,7 +33,7 @@ public class HomeController {
 
 	@Autowired
 	AreaTempRepository areaTempRepository;
-	
+
 	@Autowired
 	AirRepository airRepository;
 
@@ -42,18 +42,19 @@ public class HomeController {
 
 	@Autowired
 	WeatherRepository weatherRepository;
+
 	
 	@GetMapping("/")
 	public String index(Model model, @RequestParam(defaultValue = "1") int page, Pageable pageable) {
 		List<Covid> covidList = covidRepository.findAll();
-		
-		pageable = PageRequest.of(page-1, 10);
+
+		pageable = PageRequest.of(page - 1, 10);
 
 		Page<AreaTemp> pageList = areaTempRepository.findAll(pageable);
-		
+
 		List<Air> airList = airRepository.findAll();
 		List<Weather> weatherList = weatherRepository.findAll();
-		
+
 		int startPage = (page - 1) / 10 * 10 + 1;
 		int endPage = startPage + 9;
 		model.addAttribute("startPage", startPage);
@@ -64,15 +65,34 @@ public class HomeController {
 		model.addAttribute("areaList", pageList);
 		model.addAttribute("airList", airList);
 		model.addAttribute("weatherList", weatherList);
-		
+
 		return "weather";
 	}
-	
+
 	@GetMapping("/areaList")
 	public String areaList(@RequestParam("areacode") Integer areacode, Model model) {
-		List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
-		model.addAttribute("list", list);
+
+		  List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
+		  model.addAttribute("list", list);
+		 
 		return "areaList";
 	}
+	
+//	@GetMapping("/areaList")
+//	public String areaList(@RequestParam("areacode") Integer areacode, 
+//			@RequestParam(defaultValue = "1") int page, Pageable pageable, Model model) {
+//
+//		pageable = PageRequest.of(page - 1, 9);
+//		Page<AreaBasedList> pageList = areaBasedList.findAllByAreacode(pageable);
+//		
+//		int startPage = (page - 1) / 10 * 10 + 1;
+//		int endPage = startPage + 9;
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("endPage", endPage);
+//		model.addAttribute("page", page);
+//		model.addAttribute("areaList", pageList);
+//		 
+//		return "areaList";
+//	}
 
 }
