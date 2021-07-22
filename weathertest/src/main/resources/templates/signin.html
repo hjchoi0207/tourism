@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="common/head">
+
+</head>
+<body>
+	
+<nav class="navbar navbar-inverse" th:replace="common/nav">
+</nav>
+	<div class="container">
+ <div class="container text-center">
+ <form method="post" action="/signin">
+ <div class="form-group"style="width:300px; height:50px; margin:auto">
+ <label for="email"class="col-sm-2 col-form-label"><strong>Email:</strong></label>
+   <div class="col-sm-10">
+ <input type="text" class="form-control" id="email" name="email">
+ </div></div>
+ <div class="form-group"style="width:300px; height:50px; margin:auto">
+ <label for="pwd" class="col-sm-2 col-form-label"><strong>Pw:</strong></label>
+    <div class="col-sm-10">
+ <input type="password" class="form-control" id="pwd" name="pwd">
+ </div>
+ </div>
+ <div class="form-group"style="width:300px; height:50px; margin:auto">
+ <button class="btn btn-primary btn-block" id="signin" style="width:300px; height:50px;">Sign in</button>
+ </div>
+ <div class="form-group"style="width:300px; height:50px; margin:auto;">
+ <button class="btn btn-primary btn-block"style="width:300px; height:50px; margin:auto"onclick="location.href='http://localhost:8080/signup'">Sign Up</button>
+ </div>
+ </form>
+ </div>
+ </div>
+
+
+	<script>
+		$("#signin").click(function () {
+			$("form").submit();
+			return false;
+		});
+	</script>
+	<footer class="container-fluid text-center" th:replace="common/footer">
+</footer>
+
+</body>
+
+</html>
