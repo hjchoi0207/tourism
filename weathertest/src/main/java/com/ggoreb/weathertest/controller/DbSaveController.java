@@ -20,11 +20,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.ggoreb.weathertest.model.Air;
 import com.ggoreb.weathertest.model.AreaBasedList;
 import com.ggoreb.weathertest.model.AreaTemp;
 import com.ggoreb.weathertest.model.Covid;
 import com.ggoreb.weathertest.model.Weather;
-import com.ggoreb.weathertest.repository.AirConditionRepository;
+import com.ggoreb.weathertest.repository.AirRepository;
 import com.ggoreb.weathertest.repository.AreaBasedListRepository;
 import com.ggoreb.weathertest.repository.AreaTempRepository;
 import com.ggoreb.weathertest.repository.CovidRepository;
@@ -37,39 +38,39 @@ public class DbSaveController {
 	@Autowired
 	WeatherRepository weatherRepository;
 	@Autowired
-	AirConditionRepository airConditionRepository;
+	AirRepository airRepository;
 	@Autowired
 	AreaBasedListRepository areaBasedListRepository;
 	@Autowired
 	AreaTempRepository areaTempRepository;
-	
+
 	private static String getTagValue(String tag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
-		Node nValue = (Node)nlList.item(0);
-		if(nValue==null)
+		Node nValue = (Node) nlList.item(0);
+		if (nValue == null)
 			return null;
 		return nValue.getNodeValue();
 	}
-	
+
 	@GetMapping("/covid")
 	public void covid() {
 		Covid covid = new Covid();
 		try {
-			String url="http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210720&endCreateDt=20210720";
-			
+			String url = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210721&endCreateDt=20210721";
+
 			Document documentInfo = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url);
-			
-			//root tag
+
+			// root tag
 			documentInfo.getDocumentElement().normalize();
-			
-			//파싱할 tag
+
+			// 파싱할 tag
 			NodeList nList = documentInfo.getElementsByTagName("item");
-			
-			for(int temp=0;temp<nList.getLength();temp++) {
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
 				Node nNode = nList.item(temp);
-				if(nNode.getNodeType()==Node.ELEMENT_NODE) {
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-					
+
 					covid.setArea(getTagValue("gubun", eElement));
 					covid.setIncdec(getTagValue("incDec", eElement));
 					covid.setTotal(getTagValue("defCnt", eElement));
@@ -77,16 +78,66 @@ public class DbSaveController {
 					covid.setIsolClear(getTagValue("isolClearCnt", eElement));
 					covid.setOverflow(getTagValue("overFlowCnt", eElement));
 					covid.setLocal(getTagValue("localOccCnt", eElement));
-					
+
 					covidRepository.save(covid);
 					covid = new Covid();
 				}
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	@GetMapping("/air")
+	public String[] air() {
+		RestTemplate rt = new RestTemplate();
+		RequestEntity requestEntity = null;
+
+		try {
+			requestEntity = RequestEntity.get(new URI(
+					"http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=2021-07-21&returnType=json&serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&numOfRows=100&pageNo=1"))
+					.build();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
+		Map<String, Object> temp = entity.getBody();
+		Map<String, Object> response = (Map<String, Object>) temp.get("response");
+		Map<String, Object> body = (Map<String, Object>) response.get("body");
+		List<Map<String, Object>> items = (List<Map<String, Object>>) body.get("items");
+		Map<String, Object> item = items.get(0);
+		String informGrade = (String) item.get("informGrade");
+		String[] array = informGrade.split(",");
+
+		for (int i = 0; i < array.length; i++) {
+			Air air = new Air();
+			if (array[i].contains("경북")) {
+				air.setAirInfo(array[i]);
+				air.setAreacode(35);
+				airRepository.save(air);
+			} else if (array[i].contains("경남")) {
+				air.setAirInfo(array[i]);
+				air.setAreacode(36);
+				airRepository.save(air);
+			} else if (array[i].contains("대구")) {
+				air.setAirInfo(array[i]);
+				air.setAreacode(4);
+				airRepository.save(air);
+			} else if (array[i].contains("부산")) {
+				air.setAirInfo(array[i]);
+				air.setAreacode(6);
+				airRepository.save(air);
+			} else if (array[i].contains("울산")) {
+				air.setAirInfo(array[i]);
+				air.setAreacode(7);
+				airRepository.save(air);
+			}
+
+		}
+		return array;
+	}
+
 	@GetMapping("/weather")
 	public List<Map<String, Object>> weather() {
 		Weather weather = new Weather();
@@ -97,7 +148,7 @@ public class DbSaveController {
 					.get(new URI("http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?"
 							+ "serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D"
 							+ "&dataType=json" + "&numOfRows=10" + "&pageNo=1" + "&base_date=20210720"
-							+ "&base_time=2000" + "&nx=89" + "&ny=90"))
+							+ "&base_time=2000" + "&nx=91" + "&ny=77"))
 					.build();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -109,24 +160,25 @@ public class DbSaveController {
 		Map<String, Object> body = (Map<String, Object>) response.get("body");
 		Map<String, Object> items = (Map<String, Object>) body.get("items");
 		List<Map<String, Object>> item = (List<Map<String, Object>>) items.get("item");
-		
-		for(Map<String, Object> map : item) {
-			System.out.println((String)map.get("category"));
-			if(((String)map.get("category")).equals("POP")) {
+
+		for (Map<String, Object> map : item) {
+			System.out.println((String) map.get("category"));
+			if (((String) map.get("category")).equals("POP")) {
 				weather.setPopCategory((String) map.get("category"));
 				weather.setPopCategoryValue((String) map.get("fcstValue"));
-			
-			}else if(((String)map.get("category")).equals("SKY")) {
+
+			} else if (((String) map.get("category")).equals("SKY")) {
 				weather.setSkyCategory((String) map.get("category"));
 				weather.setSkyCategoryValue((String) map.get("fcstValue"));
 			}
 			weather.setNx((Integer) map.get("nx"));
 			weather.setNy((Integer) map.get("ny"));
 		}
-		weather.setAreacode(4);
+		weather.setAreacode(36);
 		weatherRepository.save(weather);
 		return item;
 	}
+
 	
 	private final String TourKey = "MUMreSgE%2BSS7myJQ4TQvAZ4v3GKdHjY4w58566xQLA%2Fvt702075b8IUFHfFyv96B3l6j%2FyksrgR%2FY2yAeUIruA%3D%3D";
 	private final String TourUrl = "http://api.visitkorea.or.kr/openapi/service/rest/KorService";
@@ -153,9 +205,8 @@ public class DbSaveController {
 		Map<String, Object> items = (Map<String, Object>) body.get("items");
 		List<Map<String, Object>> item = (List<Map<String, Object>>) items.get("item");
 
-		
 		Weather w = new Weather();
-		
+
 		// 조회수 추가하기
 		AreaBasedList areaBasedList = new AreaBasedList();
 		for (Map<String, Object> map : item) {
@@ -167,17 +218,17 @@ public class DbSaveController {
 			areaBasedList.setFirstimage(String.valueOf(map.get("firstimage")));
 			areaBasedList.setTel(String.valueOf(map.get("tel")));
 			areaBasedList.setReadcount(String.valueOf(map.get("readcount")));
-			
-			w=weatherRepository.findByAreacode((Integer) map.get("areacode"));
+
+			w = weatherRepository.findByAreacode((Integer) map.get("areacode"));
 			areaBasedList.setWeather(w);
-			
+
 			areaBasedListRepository.save(areaBasedList);
 			areaBasedList = new AreaBasedList();
 		}
 
 		return item;
-	}
-	
+	} 
+
 	@GetMapping("/recommend")
 	public void recommend() {
 		List<AreaBasedList> areaList = new ArrayList<AreaBasedList>();
@@ -216,12 +267,22 @@ public class DbSaveController {
 			}
 		}
 
+		List<Air> airTemp = airRepository.findAll();
+		List<Air> airResult = new ArrayList<Air>();
+		for (Air a : airTemp) {
+			if (a.getAirInfo().contains("좋음")) {
+				airResult.add(a);
+			}
+		}
+
 		List<AreaBasedList> areaTemp = new ArrayList<AreaBasedList>();
 
 		for (Weather w : weatherResult) {
 			for (Integer key : covidMap.keySet()) {
-				if (w.getAreacode() == key) {
-					areaTemp = areaBasedListRepository.findAllByAreacode(key);
+				for (Air a : airResult) {
+					if (w.getAreacode() == key && a.getAreacode() == key) {
+						areaTemp = areaBasedListRepository.findAllByAreacode(key);
+					}
 				}
 			}
 			areaList.addAll(areaTemp);
@@ -236,5 +297,5 @@ public class DbSaveController {
 			at = new AreaTemp();
 		}
 	}
-	
+
 }

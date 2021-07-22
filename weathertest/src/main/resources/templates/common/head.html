@@ -29,37 +29,100 @@
 			background-color: #555;
 			color: white;
 			padding: 15px;
+			clear : left;
 		}
 
 		/* On small screens, set height to 'auto' for sidenav and grid */
-		@media screen and (max-width: 767px) {
-			.sidenav {
-				height: auto;
-				padding: 15px;
-			}
+		
+		
+		.left{
+			width:400px;
+			float:left;
+			background-color: #f1f1f1;
+		}
+		.right{
+			width:400px;
+			float:left;
+			background-color: #f1f1f1;
+		}
 
-			.row.content {
-				height: auto;
-			}
+		.row{
+			display:flex;
+		}
+		.content{
+			width:1300px;
+			float:left;
+			display :block;
+			margin: auto;
 		}
 
 		.weatherCovidInfo {
-			margin-top: 30px;
+		
+			margin: auto;
 			display: flex;
 			float :left;
 			text-align: center;
 		}
+		.weatherInfo{
+			width : 800px;
+		}
 	
 		.weatherInfo img{
 			height:700px;
+			
+		}
+		.covidInfo {
+			width: 450px;
+			height: 800px;
+			margin-right: 50px;
+		}
+	
+		.busanAir{
+			transform: translate3d(200px,-220px,50px);
+			font-weight: bold;
+		}
+		.busanWeather{
+			transform: translate3d(200px,-250px,50px);
+			font-weight: bold;
+		}
+		.daeguAir{
+			transform: translate3d(50px,-400px,50px);
+			font-weight: bold;
+			color: white;
+		}
+		.daeguWeather{
+			transform: translate3d(50px,-430px,50px);
+			font-weight: bold;
+			color: white;
+		}
+		.ulsanAir{
+			transform: translate3d(260px,-300px,50px);
+			font-weight: bold;
+		}
+		.ulsanWeather{
+			transform: translate3d(260px,-420px,50px);
+			font-weight: bold;
+		}
+		.northAir{
+			transform: translate3d(-280px,-500px,50px);
+			font-weight: bold;
+		}
+		.northWeather{
+			transform: translate3d(-280px,-680px,50px);
+			font-weight: bold;
+		}
+		.southAir{
+			transform: translate3d(-290px,-200px,50px);
+			font-weight: bold;
+		}
+		.southWeather{
+			transform: translate3d(-290px,-440px,50px);
+			font-weight: bold;
 		}
 		
-		.covidInfo {
-			width: 400px;
-			height: 800px;
-		}
+		
 		.recommend{
-			margin-top: 900px;
+			transform: translate3d(0,-180px,70px);
 			clear: left;
 		}
 	</style>
