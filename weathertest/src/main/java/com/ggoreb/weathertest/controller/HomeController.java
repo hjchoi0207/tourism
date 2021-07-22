@@ -71,10 +71,28 @@ public class HomeController {
 
 	@GetMapping("/areaList")
 	public String areaList(@RequestParam("areacode") Integer areacode, Model model) {
-		List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
 
-		model.addAttribute("list", list);
+		  List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
+		  model.addAttribute("list", list);
+		 
 		return "areaList";
 	}
+	
+//	@GetMapping("/areaList")
+//	public String areaList(@RequestParam("areacode") Integer areacode, 
+//			@RequestParam(defaultValue = "1") int page, Pageable pageable, Model model) {
+//
+//		pageable = PageRequest.of(page - 1, 9);
+//		Page<AreaBasedList> pageList = areaBasedList.findAllByAreacode(pageable);
+//		
+//		int startPage = (page - 1) / 10 * 10 + 1;
+//		int endPage = startPage + 9;
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("endPage", endPage);
+//		model.addAttribute("page", page);
+//		model.addAttribute("areaList", pageList);
+//		 
+//		return "areaList";
+//	}
 
 }
