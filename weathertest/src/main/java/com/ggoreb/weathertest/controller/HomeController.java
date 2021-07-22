@@ -43,7 +43,8 @@ public class HomeController {
 	@Autowired
 	WeatherRepository weatherRepository;
 
-	@GetMapping("/chu")
+	
+	@GetMapping("/")
 	public String index(Model model, @RequestParam(defaultValue = "1") int page, Pageable pageable) {
 		List<Covid> covidList = covidRepository.findAll();
 
