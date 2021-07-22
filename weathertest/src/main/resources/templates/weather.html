@@ -11,16 +11,12 @@
 	<!--네비바-->
 	<nav th:replace="common/nav">
 	</nav>
-
+	<hr style="width: 1130px;"/>
 	<div class="container-fluid text-center">
 		<div class="row">
 
 			<!--좌측 메뉴-->
-			<div class="left">
-				<p><a href="#">테스트1</a></p>
-				<p><a href="#">테스트2</a></p>
-				<p><a href="#">테스트3</a></p>
-			</div>
+			
 
 			<!--여기서부터 본문입니다-->
 			<div class="content">
@@ -43,6 +39,21 @@
 							<p class="northWeather" th:if="${weather.areacode == 35}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
 							<p class="southWeather" th:if="${weather.areacode == 36}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
 						</th:block>
+						<a style="text-decoration: none;" th:href="@{/areaList(areacode=6)}"><div class="busanDiv box">
+						<p>부산!</p>
+						</div></a>
+						<a style="text-decoration: none;" th:href="@{/areaList(areacode=4)}"><div class="daeguDiv daegubox">
+						<p>대구!</p>
+						</div></a>
+						<a style="text-decoration: none;" th:href="@{/areaList(areacode=7)}"><div class="ulsanDiv box">
+						<p>울산!</p>
+						</div></a>
+						<a style="text-decoration: none;" th:href="@{/areaList(areacode=35)}"><div class="northDiv box">
+						<p>경북!</p>
+						</div></a>
+						<a style="text-decoration: none;" th:href="@{/areaList(areacode=36)}"><div class="southDiv box">
+						<p>경남!</p>
+						</div></a>
 					</div>
 					<!--코로나정보-->
 					<div class="covidInfo">
@@ -55,7 +66,6 @@
 									<th>해외 유입</th>
 									<th>지역 발생</th>
 									<th>현 확진자 수</th>
-
 								</tr>
 							</thead>
 							<tbody>
@@ -70,6 +80,7 @@
 						</table>
 					</div>
 				</div>
+				
 				<!--추천 여행지-->
 				<div class="recommend">
 					<h2 style="text-align: center; font-weight: bold;">추천 여행지!</h2>
@@ -90,25 +101,37 @@
 							</tr>
 						</tbody>
 					</table>
-					<th:block th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}">
-								<a th:if="${page} == ${pageNumber}" th:text="${pageNumber}" style="font-weight:bold"></a>
-								<a th:unless="${page} == ${pageNumber}" th:href="@{/chu(page=${pageNumber})}" th:text="${pageNumber}"></a>
-					</th:block>
 					
+					<ul class="pagination" style="justify-content: center;"
+				    	th:with="startIdx=${T(Math).floor(areaList.number/10)}*10+1,
+    			    	lastIdx=(${areaList.totalPages} > ${startIdx}+9) ? ${startIdx}+9 : ${areaList.totalPages}">
+    					<li th:class="${areaList.first} ? 'disabled'">
+        					<a class="page-link" th:href="${areaList.first} ? '#' : @{/chu(page=${startIdx}-1)}"
+           						aria-label="Previous">&laquo;</a>
+    					</li>
 
+					    <li th:style="${areaList.first}">
+        					<a class="page-link" th:href="@{/chu(page=${areaList.number})}">&lsaquo;</a>
+    					</li>
+
+    					<li th:class="(${page} == ${areaList.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
+        					<a class="page-link" th:text="${page}" th:href="@{/chu(page=${page})}"></a>
+    					</li>
+
+    					<li th:style="${areaList.last}">
+        					<a class="page-link" th:href="@{/chu(page=${areaList.number}+2)}">&rsaquo;</a>
+    					</li>
+
+   						<li th:class="${areaList.last} ? 'disabled'">
+        					<a class="page-link" th:href="${areaList.last} ? '#' : @{/chu(page=${lastIdx}+1)}" aria-label="Next">&raquo;</a>
+    					</li>
+					</ul>
 				</div>
 			</div>
 			<!--여기까지 본문입니다-->
 
 			<!--우측 메뉴-->
-			<div class="right">
-				<div class="well">
-					<p>광고1</p>
-				</div>
-				<div class="well">
-					<p>광고2</p>
-				</div>
-			</div>
+			
 
 		</div>
 	</div>
