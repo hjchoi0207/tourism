@@ -35,11 +35,11 @@ public class HomeController {
 	AreaTempRepository areaTempRepository;
 	
 	@Autowired
-<<<<<<< HEAD
 	AirRepository airRepository;
-=======
+
+	@Autowired
 	AreaBasedListRepository areaBasedList; // 지역관광정보
->>>>>>> 24296a1c29a7e3ed3330786dd7360f2ec75a1ff8
+
 
 	@Autowired
 	WeatherRepository weatherRepository;
