@@ -40,7 +40,6 @@ public class HomeController {
 	@Autowired
 	AreaBasedListRepository areaBasedList; // 지역관광정보
 
-
 	@Autowired
 	WeatherRepository weatherRepository;
 	
