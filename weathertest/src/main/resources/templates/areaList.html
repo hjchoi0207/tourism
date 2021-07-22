@@ -16,13 +16,13 @@
 		#cardbox {
 			display: inline-block;
 			margin: 10px;
-			width: 400px;
+			width: 360px;
 			height: 400px;
 			box-sizing: content-box;
 		}
 
 		.card-img-top {
-			width: 400px;
+			width: 100%;
 			height: 300px;
 			border-radius: 15px;
 			transition-duration: 0.3s;
@@ -35,13 +35,19 @@
 		.card-body {
 			text-align: left;
 			padding-top: 10px;
-			width: 400px;
+			width: 100%;
+			height : 106px;
 			border-top: none;
 		}
 
 		.card-title {
-			font-size: 15px;
+			font-size: 16px;
 			font-weight: bold;
+			color: black;
+		}
+
+		.card-title a {
+			color: black;
 		}
 	</style>
 </head>
@@ -104,17 +110,24 @@
 
 	<!--지역별 관광정보 -->
 	<div class="container_cardbox">
-		<div th:each="area : ${list}" id="cardbox">
-			<div class="card" style="width: 18rem;">
-				<img th:src="${area.firstimage}" class="card-img-top" alt="..."
-					onerror="src ='https://bitsofco.de/content/images/2018/12/broken-1.png'">
+			<div th:each="area : ${list}" id="cardbox">
+			<div class="card">
+				<a href="#"
+					th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}">
+					<img th:src="${area.firstimage}" class="card-img-top" alt="..."
+						onerror="src ='https://bitsofco.de/content/images/2018/12/broken-1.png'">
+				</a>
 				<div class="card-body">
-					<p class="card-title" th:text="${area.title}"></p>
-					<p><a th:href="@{'https://m.map.naver.com/search2/search.naver?query=' + ${area.addr1}}"
-							th:text="${area.addr1}"></a></p>
+					<span class="card-title">
+						<a th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}"
+							th:text="${area.title}"></a>
+					</span>
+					<p class="card-title">
+						<a th:href="@{'https://m.map.naver.com/search2/search.naver?query=' + ${area.addr1}}"
+							th:text="${area.addr1}"></a>
+					</p>
 
 					<p class="card-text" th:text="'Tel :' +  ${area.tel}"></p>
-					<!--<a href="#" class="btn btn-primary">Go somewhere</a> -->
 				</div>
 			</div>
 		</div>
