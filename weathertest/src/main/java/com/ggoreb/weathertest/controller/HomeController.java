@@ -36,7 +36,7 @@ public class HomeController {
 	
 	@Autowired
 	AirRepository airRepository;
-	
+
 	@Autowired
 	AreaBasedListRepository areaBasedList; // 지역관광정보
 
