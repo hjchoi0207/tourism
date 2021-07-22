@@ -33,7 +33,7 @@ public class HomeController {
 
 	@Autowired
 	AreaTempRepository areaTempRepository;
-	
+
 	@Autowired
 	AirRepository airRepository;
 
@@ -42,18 +42,18 @@ public class HomeController {
 
 	@Autowired
 	WeatherRepository weatherRepository;
-	
+
 	@GetMapping("/chu")
 	public String index(Model model, @RequestParam(defaultValue = "1") int page, Pageable pageable) {
 		List<Covid> covidList = covidRepository.findAll();
-		
-		pageable = PageRequest.of(page-1, 10);
+
+		pageable = PageRequest.of(page - 1, 10);
 
 		Page<AreaTemp> pageList = areaTempRepository.findAll(pageable);
-		
+
 		List<Air> airList = airRepository.findAll();
 		List<Weather> weatherList = weatherRepository.findAll();
-		
+
 		int startPage = (page - 1) / 10 * 10 + 1;
 		int endPage = startPage + 9;
 		model.addAttribute("startPage", startPage);
@@ -64,13 +64,14 @@ public class HomeController {
 		model.addAttribute("areaList", pageList);
 		model.addAttribute("airList", airList);
 		model.addAttribute("weatherList", weatherList);
-		
+
 		return "weather";
 	}
-	
+
 	@GetMapping("/areaList")
 	public String areaList(@RequestParam("areacode") Integer areacode, Model model) {
 		List<AreaBasedList> list = areaBasedList.findAllByAreacode(areacode);
+
 		model.addAttribute("list", list);
 		return "areaList";
 	}

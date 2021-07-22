@@ -50,6 +50,21 @@
 		.card-title a {
 			color: black;
 		}
+		.area-list-img{
+			width : 1300px;
+			margin: 0 auto;
+			margin-bottom : 50px;
+			text-align : center;
+		}
+		.area-list-img li{
+			display: inline-block;
+			margin-right: 25px;
+		}
+		.area-list-img li img{
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+		}
 	</style>
 </head>
 
@@ -63,30 +78,17 @@
 
 	<nav th:replace="common/nav">
 	</nav>
-	<!-- Carousel -->
 	
-	<!--<div id="carouselExampleControls" class="carousel-slide" data-bs-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="/airbnb_logo_carousel.png" class="d-block w-100">
-			</div>
-			<div class="carousel-item">
-				<img src="/airbnb_logo_carousel.png" class="d-block w-100">
-			</div>
-			<div class="carousel-item">
-				<img src="/airbnb_logo_carousel.png" class="d-block w-100">
-			</div>
-		</div>
-	</div>-->
-
-
-
+	<ul class="area-list-img">
+		<li><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a></li><!--대구-->
+		<li><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a></li><!--부산-->
+		<li><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a></li><!--울산-->
+		<li><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a></li><!--경남-->
+		<li><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a></li><!--경북-->
+	</ul>
+<!-- areaList_36_namhae -->
 	<!--<img src="/airbnb_logo_carousel.png">-->
+	<hr>
 
 	<!--지역별 관광정보 -->
 	<div class="container_cardbox" style="margin : 0 auto;">
@@ -112,6 +114,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	<footer th:replace="common/footer">
 	</footer>
