@@ -7,123 +7,167 @@
 </head>
 
 <body>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script> $('.carousel').carousel({interval: 500}) </script>
+
 
 	<!--네비바-->
 	<nav th:replace="common/nav">
 	</nav>
-	<hr style="width: 1130px;"/>
-	<div class="container-fluid text-center">
-		<div class="row">
+	<hr style="width: 1230px;" />
 
-			<!--좌측 메뉴-->
-			
+	
+	<div style="width: 1230px; height:500px; margin:auto" id="demo" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<!-- 슬라이드 쇼 -->
+			<div class="carousel-item active"><img style="height: 440px;" class="d-block w-100" src="trip1.jpg" alt="First slide"></div>
+			<div class="carousel-item"> <img style="height: 440px;" class="d-block w-100" src="trip2.jpg" alt="Second slide"> </div>
+			<div class="carousel-item"> <img style="height: 440px;" class="d-block w-100" src="trip3.jpg" alt="Third slide"> </div>
+			<!-- / 슬라이드 쇼 끝 -->
+			<!-- 왼쪽 오른쪽 화살표 버튼 --> 
+			<a class="carousel-control-prev" href="#demo" data-slide="prev"> 
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>  
+			</a> 
+			<a class="carousel-control-next" href="#demo" data-slide="next"> 
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			</a> <!-- / 화살표 버튼 끝 -->
 
-			<!--여기서부터 본문입니다-->
-			<div class="content">
-				<div class="weatherCovidInfo">
-					<!--지역 날씨 미세먼지-->
-					<div class="weatherInfo">
-						<h3 style="font-weight: bold;">날씨 현황</h3>
-						<img src="/map.jpg" alt="지도" />
-						<th:block th:each="air : ${airList}">
-							<p class="busanAir" th:if="${air.areacode == 6}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
-							<p class="daeguAir" th:if="${air.areacode == 4}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
-							<p class="ulsanAir" th:if="${air.areacode == 7}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
-							<p class="northAir" th:if="${air.areacode == 35}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
-							<p class="southAir" th:if="${air.areacode == 36}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
-						</th:block>
-						<th:block th:each="weather : ${weatherList}">
-							<p class="busanWeather" th:if="${weather.areacode == 6}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
-							<p class="daeguWeather" th:if="${weather.areacode == 4}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
-							<p class="ulsanWeather" th:if="${weather.areacode == 7}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
-							<p class="northWeather" th:if="${weather.areacode == 35}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
-							<p class="southWeather" th:if="${weather.areacode == 36}" th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
-						</th:block>
-						<a style="text-decoration: none;" th:href="@{/areaList(areacode=6)}"><div class="busanDiv box">
-						<p>부산!</p>
-						</div></a>
-						<a style="text-decoration: none;" th:href="@{/areaList(areacode=4)}"><div class="daeguDiv daegubox">
-						<p>대구!</p>
-						</div></a>
-						<a style="text-decoration: none;" th:href="@{/areaList(areacode=7)}"><div class="ulsanDiv box">
-						<p>울산!</p>
-						</div></a>
-						<a style="text-decoration: none;" th:href="@{/areaList(areacode=35)}"><div class="northDiv box">
-						<p>경북!</p>
-						</div></a>
-						<a style="text-decoration: none;" th:href="@{/areaList(areacode=36)}"><div class="southDiv box">
-						<p>경남!</p>
-						</div></a>
-					</div>
-					<!--코로나정보-->
-					<div class="covidInfo">
-						<h3 style="font-weight: bold;">전국 코로나(covid-19) 현황</h3>
-						<table class="table">
-							<thead>
-								<tr class="text-center thead-dark">
-									<th>지역</th>
-									<th>신규 확진자</th>
-									<th>해외 유입</th>
-									<th>지역 발생</th>
-									<th>현 확진자 수</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="covid : ${covidList}">
-									<td th:text="${covid.area}"></td>
-									<td th:text="${covid.incdec}"></td>
-									<td th:text="${covid.overflow}"></td>
-									<td th:text="${covid.local}"></td>
-									<td th:text="${covid.isol}"></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<!--좌측 메뉴-->
+
+
+		<!--여기서부터 본문입니다-->
+		<div class="content">
+			<div class="weatherCovidInfo">
+				<!--지역 날씨 미세먼지-->
+				<div class="weatherInfo">
+					<h3 style="font-weight: bold;">날씨 현황</h3>
+					<img src="/map.jpg" alt="지도" />
+					<th:block th:each="air : ${airList}">
+						<p class="busanAir" th:if="${air.areacode == 6}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+						<p class="daeguAir" th:if="${air.areacode == 4}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+						<p class="ulsanAir" th:if="${air.areacode == 7}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+						<p class="northAir" th:if="${air.areacode == 35}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+						<p class="southAir" th:if="${air.areacode == 36}" th:text="${air.airInfo} + ' (미세먼지)'"></p>
+					</th:block>
+					<th:block th:each="weather : ${weatherList}">
+						<p class="busanWeather" th:if="${weather.areacode == 6}"
+							th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+						<p class="daeguWeather" th:if="${weather.areacode == 4}"
+							th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+						<p class="ulsanWeather" th:if="${weather.areacode == 7}"
+							th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+						<p class="northWeather" th:if="${weather.areacode == 35}"
+							th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+						<p class="southWeather" th:if="${weather.areacode == 36}"
+							th:text="'    강수확률 : ' + ${weather.popCategoryValue} + '%'"></p>
+					</th:block>
+					<a style="text-decoration: none;" th:href="@{/areaList(areacode=6)}">
+						<div class="busanDiv box">
+							<p>부산!</p>
+						</div>
+					</a>
+					<a style="text-decoration: none;" th:href="@{/areaList(areacode=4)}">
+						<div class="daeguDiv daegubox">
+							<p>대구!</p>
+						</div>
+					</a>
+					<a style="text-decoration: none;" th:href="@{/areaList(areacode=7)}">
+						<div class="ulsanDiv box">
+							<p>울산!</p>
+						</div>
+					</a>
+					<a style="text-decoration: none;" th:href="@{/areaList(areacode=35)}">
+						<div class="northDiv box">
+							<p>경북!</p>
+						</div>
+					</a>
+					<a style="text-decoration: none;" th:href="@{/areaList(areacode=36)}">
+						<div class="southDiv box">
+							<p>경남!</p>
+						</div>
+					</a>
 				</div>
-				
-				<!--추천 여행지-->
-				<div class="recommend">
-					<h2 style="text-align: center; font-weight: bold;">추천 여행지!</h2>
+				<!--코로나정보-->
+				<div class="covidInfo">
+					<h3 style="font-weight: bold;">전국 코로나(covid-19) 현황</h3>
 					<table class="table">
 						<thead>
 							<tr class="text-center thead-dark">
-								<th>id</th>
-								<th>관광지 명</th>
-								<th>주소</th>
-
+								<th>지역</th>
+								<th>신규 확진자</th>
+								<th>해외 유입</th>
+								<th>지역 발생</th>
+								<th>현 확진자 수</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="area : ${areaList}">
-								<td th:text="${area.id}"></td>
-								<td th:text="${area.title}"></td>
-								<td th:text="${area.addr1}"></td>
+							<tr th:each="covid : ${covidList}">
+								<td th:text="${covid.area}"></td>
+								<td th:text="${covid.incdec}"></td>
+								<td th:text="${covid.overflow}"></td>
+								<td th:text="${covid.local}"></td>
+								<td th:text="${covid.isol}"></td>
 							</tr>
 						</tbody>
 					</table>
-					
-					<ul class="pagination" style="justify-content: center;"
-				    	th:with="startIdx=${T(Math).floor(areaList.number/10)}*10+1,
+				</div>
+			</div>
+
+			<!--추천 여행지-->
+			<div class="recommend">
+				<h2 style="text-align: center; font-weight: bold;">추천 여행지!</h2>
+				<table class="table">
+					<thead>
+						<tr class="text-center thead-dark">
+							<th style="text-align: center;">id</th>
+							<th style="text-align: center;">관광지 명</th>
+							<th style="text-align: center;">주소</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="area : ${areaList}">
+							<td th:text="${area.id}"></td>
+							<td th:text="${area.title}"></td>
+							<td th:text="${area.addr1}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<ul class="pagination" style="justify-content: center;" th:with="startIdx=${T(Math).floor(areaList.number/10)}*10+1,
     			    	lastIdx=(${areaList.totalPages} > ${startIdx}+9) ? ${startIdx}+9 : ${areaList.totalPages}">
-    					<li th:class="${areaList.first} ? 'disabled'">
-        					<a class="page-link" th:href="${areaList.first} ? '#' : @{/chu(page=${startIdx}-1)}"
-           						aria-label="Previous">&laquo;</a>
-    					</li>
+					<li th:class="${areaList.first} ? 'disabled'">
+						<a class="page-link" th:href="${areaList.first} ? '#' : @{/(page=${startIdx}-1)}"
+							aria-label="Previous">&laquo;</a>
+					</li>
 
-					    <li th:style="${areaList.first}">
-        					<a class="page-link" th:href="@{/chu(page=${areaList.number})}">&lsaquo;</a>
-    					</li>
+					<li th:style="${areaList.first}">
+						<a class="page-link" th:href="@{/(page=${areaList.number})}">&lsaquo;</a>
+					</li>
 
-    					<li th:class="(${page} == ${areaList.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
-        					<a class="page-link" th:text="${page}" th:href="@{/chu(page=${page})}"></a>
+					<li th:class="(${page} == ${areaList.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
+        					<a class="page-link" th:text="${page}" th:href="@{/(page=${page})}"></a>
     					</li>
 
     					<li th:style="${areaList.last}">
-        					<a class="page-link" th:href="@{/chu(page=${areaList.number}+2)}">&rsaquo;</a>
+        					<a class="page-link" th:href="@{/(page=${areaList.number}+2)}">&rsaquo;</a>
     					</li>
 
    						<li th:class="${areaList.last} ? 'disabled'">
-        					<a class="page-link" th:href="${areaList.last} ? '#' : @{/chu(page=${lastIdx}+1)}" aria-label="Next">&raquo;</a>
+        					<a class="page-link" th:href="${areaList.last} ? '#' : @{/(page=${lastIdx}+1)}" aria-label="Next">&raquo;</a>
     					</li>
 					</ul>
 				</div>

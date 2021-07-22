@@ -56,7 +56,7 @@ public class DbSaveController {
 	public void covid() {
 		Covid covid = new Covid();
 		try {
-			String url = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210721&endCreateDt=20210721";
+			String url = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210722&endCreateDt=20210722";
 
 			Document documentInfo = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url);
 
@@ -95,7 +95,7 @@ public class DbSaveController {
 
 		try {
 			requestEntity = RequestEntity.get(new URI(
-					"http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=2021-07-21&returnType=json&serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&numOfRows=100&pageNo=1"))
+					"http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=2021-07-22&returnType=json&serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&numOfRows=100&pageNo=1"))
 					.build();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -147,9 +147,15 @@ public class DbSaveController {
 			requestEntity = RequestEntity
 					.get(new URI("http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?"
 							+ "serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D"
-							+ "&dataType=json" + "&numOfRows=10" + "&pageNo=1" + "&base_date=20210720"
-							+ "&base_time=2000" + "&nx=91" + "&ny=77"))
+							+ "&dataType=json" + "&numOfRows=10" + "&pageNo=1" + "&base_date=20210722"
+							+ "&base_time=0800" + "&nx=89" + "&ny=91"))
 					.build();
+			//    x  y 지역코드
+			//부산 98 76 6
+			//대구 89 90 4
+			//울산 102 84 7
+			//경북 89 91 35
+			//경남 91 77 36
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -174,7 +180,7 @@ public class DbSaveController {
 			weather.setNx((Integer) map.get("nx"));
 			weather.setNy((Integer) map.get("ny"));
 		}
-		weather.setAreacode(36);
+		weather.setAreacode(35);
 		weatherRepository.save(weather);
 		return item;
 	}
@@ -192,7 +198,7 @@ public class DbSaveController {
 		try {
 			requestEntity = RequestEntity.get(new URI(TourUrl + "/areaBasedList" + "?serviceKey=" + TourKey
 					+ "&numOfRows=100" + "&pageNo=1" + "&MobileOS=ETC" + "&MobileApp=AppTest" + "&arrange=A"
-					+ "&contentTypeId=15" + "&areaCode=36"// 4,6,7,35,36
+					+ "&contentTypeId=15" + "&areaCode=4"// 4,6,7,35,36
 					+ "&listYN=Y" + "&_type=json")).build();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
