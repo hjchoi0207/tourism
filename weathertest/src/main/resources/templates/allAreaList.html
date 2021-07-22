@@ -1,74 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/4.0.2/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<head th:replace="common/head">
 
-	<style>
-		.container_cardbox {
-			text-align: center;
-			width: 1130px;
-			margin: 0 auto;
-		}
-
-		#cardbox {
-			display: inline-block;
-			margin: 10px;
-			width: 330px;
-			height: 300px;
-			box-sizing: content-box;
-		}
-
-		.card-img-top {
-			width: 100%;
-			height: 240px;
-			border-radius: 15px;
-			transition-duration: 0.3s;
-		}
-
-		.card-img-top:hover {
-			transform: scale(1.05);
-		}
-
-		.card-body {
-			text-align: left;
-			padding-top: 10px;
-			width: 100%;
-			height: 106px;
-			border-top: none;
-		}
-
-		.card-title {
-			font-size: 16px;
-			font-weight: bold;
-			color: black;
-		}
-
-		.card-title a {
-			color: black;
-		}
-
-		.area-list-img {
-			width: 1300px;
-			margin: 0 auto;
-			margin-bottom: 50px;
-			text-align: center;
-		}
-
-		.area-list-img li {
-			display: inline-block;
-			margin-right: 25px;
-		}
-
-		.area-list-img li img {
-			width: 200px;
-			height: 200px;
-			border-radius: 50%;
-		}
-	</style>
 </head>
 
 
@@ -81,19 +15,19 @@
 	</nav>
 
 	<ul class="area-list-img">
-		<li><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a></li>
-		<!--대구-->
-		<li><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a></li>
-		<!--부산-->
+		<li><div><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a><p>대구</p></div></li><!--대구-->
+		<li><div><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a><p>부산</p></div></li><!--대구-->
+		<li><div><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a><p>울산</p></div></li><!--대구-->
+		<li><div><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a><p>경남</p></div></li><!--대구-->
+		<li><div><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a><p>경북</p></div></li><!--대구-->
+		
+		<!--<li><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a></li>
 		<li><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a></li>
-		<!--울산-->
 		<li><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a></li>
-		<!--경남-->
-		<li><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a></li>
-		<!--경북-->
+		<li><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a></li>-->
 	</ul>
 
-	<hr>
+	<hr style="width: 1230px;" />
 
 	<!--지역별 관광정보 -->
 	<div class="container_cardbox" style="margin : 0 auto;">
