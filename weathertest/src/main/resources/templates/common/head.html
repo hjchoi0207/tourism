@@ -3,23 +3,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<style>
-		/* Remove the navbar's default margin-bottom and rounded borders */
-		.navbar {
-			margin-bottom: 0;
-			border-radius: 0;
-			width:1300px;
-			height : 150px;
-			margin: auto;
-		}
-		.navbar img{
-			width: 300px;
-			
-		}
 		
-
 		/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 		.row.content {
 			height: 100%
@@ -37,128 +25,146 @@
 			background-color: #555;
 			color: white;
 			padding: 15px;
-			clear : left;
+			clear: left;
 			transform: translateY(400px);
 		}
 
 		/* On small screens, set height to 'auto' for sidenav and grid */
-		
-		
-		.left{
-			width:400px;
-			float:left;
-			
-		}
-		.right{
-			width:400px;
-			float:left;
-		
+
+
+		.left {
+			width: 400px;
+			float: left;
+
 		}
 
-		.row{
-			display:flex;
+		.right {
+			width: 400px;
+			float: left;
+
 		}
-		.content{
-			width:1230px;
+
+		.row {
+			display: flex;
+		}
+
+		.content {
+			width: 1230px;
 			height: 1400px;
-			float:left;
-			display :block;
+			float: left;
+			display: block;
 			margin: auto;
 		}
 
 		.weatherCovidInfo {
-		
+
 			margin: auto;
 			display: flex;
-			float :left;
+			float: left;
 			text-align: center;
 		}
-		.weatherInfo{
-			width : 700px;
+
+		.weatherInfo {
+			width: 700px;
 		}
-	
-		.weatherInfo img{
-			height:700px;
+
+		.weatherInfo img {
+			height: 700px;
 			transform: translateZ(40px);
-			
+
 		}
+
 		.covidInfo {
 			margin-left: 30px;
 			width: 500px;
 			height: 800px;
 			margin-right: 50px;
 		}
-	
-		.busanAir{
-			transform: translate3d(200px,-250px,50px);
+
+		.busanAir {
+			transform: translate3d(200px, -250px, 50px);
 			font-weight: bold;
 		}
-		.busanWeather{
-			transform: translate3d(200px,-290px,50px);
+
+		.busanWeather {
+			transform: translate3d(200px, -290px, 50px);
 			font-weight: bold;
 		}
-		.daeguAir{
-			transform: translate3d(-10px,-450px,50px);
-			font-weight: bold;
-			color: white;
-		}
-		.daeguWeather{
-			transform: translate3d(-10px,-580px,50px);
+
+		.daeguAir {
+			transform: translate3d(-10px, -450px, 50px);
 			font-weight: bold;
 			color: white;
 		}
-		.ulsanAir{
-			transform: translate3d(275px,-320px,50px);
+
+		.daeguWeather {
+			transform: translate3d(-10px, -580px, 50px);
+			font-weight: bold;
+			color: white;
+		}
+
+		.ulsanAir {
+			transform: translate3d(275px, -320px, 50px);
 			font-weight: bold;
 		}
-		.ulsanWeather{
-			transform: translate3d(275px,-530px,50px);
+
+		.ulsanWeather {
+			transform: translate3d(275px, -530px, 50px);
 			font-weight: bold;
 		}
-		.northAir{
-			transform: translate3d(-280px,-500px,50px);
+
+		.northAir {
+			transform: translate3d(-280px, -500px, 50px);
 			font-weight: bold;
 		}
-		.northWeather{
-			transform: translate3d(-280px,-790px,50px);
+
+		.northWeather {
+			transform: translate3d(-280px, -790px, 50px);
 			font-weight: bold;
 		}
-		.southAir{
-			transform: translate3d(-290px,-200px,50px);
+
+		.southAir {
+			transform: translate3d(-290px, -200px, 50px);
 			font-weight: bold;
 		}
-		.southWeather{
-			transform: translate3d(-290px,-375px,50px);
+
+		.southWeather {
+			transform: translate3d(-290px, -375px, 50px);
 			font-weight: bold;
 		}
-		
-		.box{
+
+		.box {
 			border: black dashed 3px;
 			border-radius: 20%;
 			width: 200px;
 			height: 150px;
 		}
-		.box p{
+
+		.box p {
 			opacity: 0;
-			
+
 		}
-		.daegubox{
+
+		.daegubox {
 			border: white dashed 3px;
 			border-radius: 20%;
 			width: 200px;
 			height: 150px;
 		}
-		.daegubox p{
-			opacity:0;
+
+		.daegubox p {
+			opacity: 0;
 		}
-		
-		.busanDiv{
-			transform: translate3d(450px,-530px,100px);
+
+		.busanDiv {
+			transform: translate3d(450px, -530px, 100px);
 		}
-		.busanDiv:hover{
+
+		.busanDiv:hover {
 			background-color: white;
 		}
-		.busanDiv:hover p{
+
+		.busanDiv:hover p {
 			transform: translateY(40px);
 			color: black;
 			font-size: 50px;
@@ -166,16 +172,18 @@
 			background-color: white;
 			opacity: 1;
 		}
-		
-		.daeguDiv{
-			transform: translate3d(240px,-920px,100px);
+
+		.daeguDiv {
+			transform: translate3d(240px, -920px, 100px);
 		}
-		.daeguDiv:hover{
+
+		.daeguDiv:hover {
 			background-color: white;
 			border: black dashed 3px;
 			border-radius: 20%;
 		}
-		.daeguDiv:hover p{
+
+		.daeguDiv:hover p {
 			transform: translateY(40px);
 			color: black;
 			font-size: 50px;
@@ -183,14 +191,16 @@
 			background-color: white;
 			opacity: 1;
 		}
-		
-		.ulsanDiv{
-			transform: translate3d(520px,-990px,100px);
+
+		.ulsanDiv {
+			transform: translate3d(520px, -990px, 100px);
 		}
-		.ulsanDiv:hover{
+
+		.ulsanDiv:hover {
 			background-color: white;
 		}
-		.ulsanDiv:hover p{
+
+		.ulsanDiv:hover p {
 			transform: translateY(40px);
 			color: black;
 			font-size: 50px;
@@ -198,14 +208,16 @@
 			background-color: white;
 			opacity: 1;
 		}
-		
-		.northDiv{
-			transform: translate3d(-30px,-1360px,100px);
+
+		.northDiv {
+			transform: translate3d(-30px, -1360px, 100px);
 		}
-		.northDiv:hover{
+
+		.northDiv:hover {
 			background-color: white;
 		}
-		.northDiv:hover p{
+
+		.northDiv:hover p {
 			transform: translateY(40px);
 			color: black;
 			font-size: 50px;
@@ -213,14 +225,16 @@
 			background-color: white;
 			opacity: 1;
 		}
-		
-		.southDiv{
-			transform: translate3d(-35px,-1250px,100px);
+
+		.southDiv {
+			transform: translate3d(-35px, -1250px, 100px);
 		}
-		.southDiv:hover{
+
+		.southDiv:hover {
 			background-color: white;
 		}
-		.southDiv:hover p{
+
+		.southDiv:hover p {
 			transform: translateY(40px);
 			color: black;
 			font-size: 50px;
@@ -228,10 +242,10 @@
 			background-color: white;
 			opacity: 1;
 		}
-		
-		
-		.recommend{
-			transform: translate3d(0,-800px,70px);
+
+
+		.recommend {
+			transform: translate3d(0, -800px, 70px);
 			clear: left;
 			text-align: center;
 		}

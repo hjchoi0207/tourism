@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/4.0.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<head>
 	<style>
+	.nav ul{
+		width: 1500px;;
+	}
 		.container_cardbox {
 			text-align: center;
 			width: 1130px;
@@ -51,39 +53,58 @@
 		.card-title a {
 			color: black;
 		}
-		.area-list-img{
-			width : 1300px;
+
+		.area-list-img {
+			width: 1300px;
 			margin: 0 auto;
-			margin-bottom : 50px;
-			text-align : center;
+			margin-bottom: 50px;
+			text-align: center;
 		}
-		.area-list-img li{
+
+		.area-list-img li {
 			display: inline-block;
 			margin-right: 25px;
 		}
-		.area-list-img li img{
+
+		.area-list-img li img {
 			width: 200px;
 			height: 200px;
 			border-radius: 50%;
 		}
-		.area-list-img li:hover img{
+
+		.area-list-img li:hover img {
 			opacity: 0.5;
 		}
-		.area-list-img p{
-			font-size : 30px;
+
+		.area-list-img p {
+			font-size: 30px;
 			opacity: 0;
 		}
-		.area-list-img div:hover p{
-			font-size : 30px;
+
+		.area-list-img div:hover p {
+			font-size: 30px;
 			font-weight: bold;
 			position: relative;
 			bottom: 115px;
 			opacity: 1;
-			color : black;
+			color: black;
+		}
+
+		/* Remove the navbar's default margin-bottom and rounded borders */
+		.navbar {
+			margin-bottom: 0;
+			border-radius: 0;
+			width: 1300px;
+			height: 150px;
+			margin: auto;
+		}
+
+		.navbar img {
+			width: 300px;
+
 		}
 	</style>
 </head>
-
 
 <!--<head th:replace="common/head">
 </head>-->
@@ -92,22 +113,47 @@
 
 	<nav th:replace="common/nav">
 	</nav>
-	
+
 	<ul class="area-list-img">
-		<li><div><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a><p>대구</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a><p>부산</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a><p>울산</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a><p>경남</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a><p>경북</p></div></li><!--대구-->
-		
+		<li>
+			<div><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a>
+				<p>대구</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a>
+				<p>부산</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a>
+				<p>울산</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a>
+				<p>경남</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a>
+				<p>경북</p>
+			</div>
+		</li>
+		<!--대구-->
+
 		<!--<li><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a></li>
 		<li><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a></li>
 		<li><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a></li>
 		<li><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a></li>-->
 	</ul>
-	
 
-	 
+
+
 	<hr>
 
 	<!--지역별 관광정보 -->
@@ -134,7 +180,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<footer th:replace="common/footer">
 	</footer>
