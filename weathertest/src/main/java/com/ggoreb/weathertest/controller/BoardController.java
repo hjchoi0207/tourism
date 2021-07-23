@@ -46,10 +46,10 @@ public class BoardController {
 	
 	@GetMapping("/board")
 	public String board(Model model, Pageable pageable, @RequestParam(defaultValue = "1") int page) {
-		List<Board> list = 
-				boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-		model.addAttribute("list", list);
-		
+		/*
+		 * List<Board> list = boardRepository.findAll(Sort.by(Sort.Direction.DESC,
+		 * "id")); model.addAttribute("list", list);
+		 */
 		pageable= PageRequest.of(page-1,10);
 	      
 	      Page<Board> pageList = boardRepository.findAll(pageable);

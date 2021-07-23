@@ -25,7 +25,7 @@ public class UserController {
 	public String signupPost(@ModelAttribute User user) {
 		System.out.println(user);
 		userRepository.save(user);
-		return "redirect:/";
+		return "redirect:/board";
 	}
 
 	@Autowired
@@ -43,7 +43,7 @@ public class UserController {
 		if (dbUser != null) {
 			session.setAttribute("user_info", dbUser);
 		}
-		return "redirect:/";
+		return "redirect:/board";
 	}
 
 	@GetMapping("/signout")
