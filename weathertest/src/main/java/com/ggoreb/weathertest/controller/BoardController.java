@@ -43,7 +43,7 @@ public class BoardController {
 //		board.setUserId(userId);
 		board.setUser(user);
 		boardRepository.save(board);
-		return "board/write";
+		return "redirect:/board";
 	}
 
 //	게시판 홈(리스트)

@@ -36,18 +36,18 @@
 		<div th:each="area : ${list}" id="cardbox">
 			<div class="card">
 				<a href="#"
-					th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}">
+					th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}" target=" _blank">
 					<img th:src="${area.firstimage}" class="card-img-top" alt="..."
 						onerror="src='/logo.png'">
 				</a>
 				<div class="card-body">
 					<span class="card-title">
 						<a th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}"
-							th:text="${area.title}"></a>
+							target=" _blank" th:text="${area.title}"></a>
 					</span>
 					<p class="card-title">
 						<a th:href="@{'https://m.map.naver.com/search2/search.naver?query=' + ${area.addr1}}"
-							th:text="${area.addr1}"></a>
+							target=" _blank" th:text="${area.addr1}"></a>
 					</p>
 
 					<p class="card-text" th:text="'Tel :' +  ${area.tel}"></p>
