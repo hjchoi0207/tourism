@@ -86,7 +86,7 @@ public class BoardController {
 
 	@PostMapping("/board/update/{id}")
 	public String boardUpdatePost(@ModelAttribute Board board, @PathVariable("id") long id) {
-		User user = (User) session.getAttribute("user_info");
+		User user = (User) session.getAttribute("user");
 		//String userId = user.getEmail();
 		//board.setUserId(userId);
 		board.setUser(user);
