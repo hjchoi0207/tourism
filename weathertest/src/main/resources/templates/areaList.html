@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head th:replace="common/head">
 	
 </head>
@@ -9,6 +10,7 @@
 
 	<nav th:replace="common/nav">
 	</nav>
+
 	<hr style="width: 1230px;" />
 	
 	<ul class="area-list-img">
@@ -18,15 +20,16 @@
 		<li><div><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a><p>경남</p></div></li>
 		<li><div><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a><p>경북</p></div></li>
 		
+
 		<!--<li><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a></li>
 		<li><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a></li>
 		<li><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a></li>
 		<li><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a></li>-->
 	</ul>
-	
 
-	
+
 	<hr style="width: 1230px;" />
+
 
 	<!--지역별 관광정보 -->
 	<div class="container_cardbox" style="margin : 0 auto;">
@@ -35,7 +38,7 @@
 				<a href="#"
 					th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}">
 					<img th:src="${area.firstimage}" class="card-img-top" alt="..."
-						onerror="src ='https://bitsofco.de/content/images/2018/12/broken-1.png'">
+						onerror="src='/logo.png'">
 				</a>
 				<div class="card-body">
 					<span class="card-title">
@@ -52,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<footer th:replace="common/footer">
 	</footer>
