@@ -8,31 +8,31 @@
 
 	<nav class="navbar navbar-inverse" th:replace="common/nav">
 	</nav>
-	<div class="container">
-		<div class="container text-center">
-			<form method="post" action="/signup">
-				<div class="form-group" style="width:300px; height:50px; margin:auto">
-					<label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="email" name="email">
-					</div>
-				</div>
-				<div class="form-group" style="width:300px; height:50px; margin:auto">
-					<label for="pwd" class="col-sm-2 col-form-label"><strong>pw:</strong></label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="pwd" name="pwd">
-					</div>
-				</div>
-				<div class="form-group" style="width:300px; height:50px; margin:auto">
-					<label for="name" class="col-sm-2 col-form-label"><strong>name:</strong></label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="name" name="name">
-					</div>
-				</div>
-				<button class="btn btn-primary btn-block" id="signup" style="width:300px; height:50px; margin:auto">Sign
-					Up</button>
-			</form>
+
+	<div class="container my-3">
+		<div class="row my-3">
+			<div class="col-4">
+				<h4>계정생성</h4>
+			</div>
+			<div class="col-8 text-right">
+				<span>또는 <a th:href="@{/signin}">로그인 하세요.</a></span>
+			</div>
 		</div>
+		<form method="post" class="post-form">
+			<div class="form-group">
+				<label for="email">이메일</label>
+				<input type="text" class="form-control" name="email" id="email">
+			</div>
+			<div class="form-group">
+				<label for="pwd">비밀번호</label>
+				<input type="password" class="form-control" name="pwd" id="pwd">
+			</div>
+			<div class="form-group">
+				<label for="username">이름</label>
+				<input type="text" class="form-control" name="name" id="name">
+			</div>
+			<button type="submit" class="btn btn-primary">생성하기</button>
+		</form>
 	</div>
 
 	<script>

@@ -9,34 +9,28 @@
 
 	<nav class="navbar navbar-inverse" th:replace="common/nav">
 	</nav>
-	<div class="container">
-		<div class="container text-center">
-			<form method="post" action="/signin">
-				<div class="form-group" style="width:300px; height:50px; margin:auto">
-					<label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="email" name="email">
-					</div>
-				</div>
-				<div class="form-group" style="width:300px; height:50px; margin:auto">
-					<label for="pwd" class="col-sm-2 col-form-label"><strong>Pw:</strong></label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="pwd" name="pwd">
-					</div>
-				</div>
-				<div class="form-group" style="width:300px; height:50px; margin:auto">
-					<button class="btn btn-primary btn-block" id="signin" style="width:300px; height:50px;">Sign
-						in</button>
-				</div>
-				<div class="form-group" style="width:300px; height:50px; margin:auto;">
-					<button class="btn btn-primary btn-block" style="width:300px; height:50px; margin:auto"
-						onclick="location.href='http://localhost:8080/signup'">Sign Up</button>
-				</div>
-			</form>
+
+	<div class="container my-3">
+		<div class="row">
+
+		</div>
+		<form method="post" class="post-form" action="/signin">
+			<div class="form-group">
+				<label for="email">이메일</label>
+				<input type="text" class="form-control" name="email" id="email">
+			</div>
+			<div class="form-group" id="siginin1">
+				<label for="pwd">비밀번호</label>
+				<input type="password" class="form-control" name="pwd" id="pwd">
+			</div>
+			<button type="submit" class="btn btn-primary">로그인</button>
+		</form>
+	</div>
+	<div class="row" id="siginin2">
+		<div class="col-8 text-right">
+			<span>또는 <a th:href="@{/signup}">계정을 만드세요.</a></span>
 		</div>
 	</div>
-
-
 	<script>
 		$("#signin").click(function () {
 			$("form").submit();

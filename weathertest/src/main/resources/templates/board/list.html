@@ -8,37 +8,39 @@
 
 	<nav class="navbar navbar-inverse" th:replace="common/nav">
 	</nav>
-	
-<div class="container">
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="board : ${list}" th:attr="id=${board.id}">
-				<td th:text="${board.id}-1"></td>
-				<td th:text="${board.title}"></td>
-				<td th:text="${board.userId}"></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<ul class="pagination" style="justify-content: center;" th:with="startIdx=${T(Math).floor(list.number/10)}*10+1,
+
+	<div class="container">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="board : ${list}" th:attr="id=${board.id}">
+					<td th:text="${board.id}-1"></td>
+					<td th:text="${board.title}"></td>
+					<td th:text="${board.userId}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+		<ul class="pagination" style="justify-content: center;" th:with="startIdx=${T(Math).floor(list.number/10)}*10+1,
     			    	lastIdx=(${list.totalPages} > ${startIdx}+9) ? ${startIdx}+9 : ${list.totalPages}">
-					<li th:class="${list.first} ? 'disabled'">
-						<a class="page-link" th:href="${list.first} ? '#' : @{/(page=${startIdx}-1)}"
-							aria-label="Previous">&laquo;</a>
-					</li>
+			<li th:class="${list.first} ? 'disabled'">
+				<a class="page-link" th:href="${list.first} ? '#' : @{/(page=${startIdx}-1)}"
+					aria-label="Previous">&laquo;</a>
+			</li>
 
-					<li th:style="${list.first}">
-						<a class="page-link" th:href="@{/(page=${list.number})}">&lsaquo;</a>
-					</li>
+			<li th:style="${list.first}">
+				<a class="page-link" th:href="@{/(page=${list.number})}">&lsaquo;</a>
+			</li>
 
-					<li th:class="(${page} == ${list.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
+			<li th:class="(${page} == ${list.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
         					<a class="page-link" th:text="${page}" th:href="@{/(page=${page})}"></a>
     					</li>
 
@@ -51,8 +53,8 @@
     					</li>
 					</ul>
 	
-
-	<button type="button" class="btn btn-primary" id="write">글쓰기</button>
+	 <a th:href="@{/board/write}" class="btn btn-primary" id="write">글쓰기</a>
+	<!--<button type="button" class="btn btn-primary" id="write">글쓰기</button>-->
 </div>
 
 
@@ -63,10 +65,10 @@
 			return false;
 		});
 		$("tr").click(function () {
-				var id = $(this).attr("id");
-				location = "/board/" + id;
-				return false;
-			});
+			var id = $(this).attr("id");
+			location = "/board/" + id;
+			return false;
+		});
 	</script>
 	<footer class="container-fluid text-center" th:replace="common/footer">
 	</footer>
