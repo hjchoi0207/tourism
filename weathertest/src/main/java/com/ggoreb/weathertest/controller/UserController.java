@@ -1,5 +1,7 @@
 package com.ggoreb.weathertest.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import com.ggoreb.weathertest.repository.UserRepository;
 public class UserController {
 	@Autowired
 	UserRepository userRepository;
-  
+
 	@GetMapping("/signup")
 	public String signup() {
 		return "signup";
@@ -34,14 +36,13 @@ public class UserController {
 	@GetMapping("/signin")
 	public String signin() {
 		return "signin";
-
 	}
 
 	@PostMapping("/signin")
-	public String signinPost(@ModelAttribute User user) {
-		User dbUser = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
-		if (dbUser != null) {
-			session.setAttribute("user_info", dbUser);
+	public String signinPost(@ModelAttribute User user, HttpSession session) {
+		Optional<User> opt = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
+		if (opt.isPresent()) {
+			session.setAttribute("user", opt.get());
 		}
 		return "redirect:/board";
 	}

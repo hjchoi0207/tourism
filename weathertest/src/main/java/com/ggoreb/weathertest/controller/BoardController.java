@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ggoreb.weathertest.model.Board;
 import com.ggoreb.weathertest.model.User;
 import com.ggoreb.weathertest.repository.BoardRepository;
-
+import com.ggoreb.weathertest.repository.UserRepository;
 
 @Controller
 public class BoardController {
@@ -37,31 +37,32 @@ public class BoardController {
 
 	@PostMapping("/board/write")
 	public String boardWritePost(@ModelAttribute Board board) {
-	User user = (User) session.getAttribute("user_info");
-	String userId = user.getEmail();
-	board.setUserId(userId);
-	boardRepository.save(board);
-	return "board/write";
+		User user = (User) session.getAttribute("user_info");
+		String userId = user.getEmail();
+		board.setUserId(userId);
+		boardRepository.save(board);
+		return "board/write";
 	}
-	
+
+//	게시판 홈(리스트)
 	@GetMapping("/board")
 	public String board(Model model, Pageable pageable, @RequestParam(defaultValue = "1") int page) {
 		/*
 		 * List<Board> list = boardRepository.findAll(Sort.by(Sort.Direction.DESC,
 		 * "id")); model.addAttribute("list", list);
 		 */
-		pageable= PageRequest.of(page-1,10);
-	      
-	      Page<Board> pageList = boardRepository.findAll(pageable);
-	      model.addAttribute("list",pageList);
-	      
-	      int startPage = (page - 1) / 10 * 10 + 1;
-	      int endPage = startPage + 9;
-	      
-	      model.addAttribute("startPage", startPage);
-	      model.addAttribute("endPage", endPage);
-	      model.addAttribute("page", page);
-	      
+		pageable = PageRequest.of(page - 1, 10);
+
+		Page<Board> pageList = boardRepository.findAll(pageable);
+		model.addAttribute("list", pageList);
+
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 9;
+
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+
 		return "board/list";
 	}
 
@@ -90,12 +91,11 @@ public class BoardController {
 		boardRepository.save(board);
 		return "redirect:/board/" + id;
 	}
-	
+
 	@GetMapping("/board/delete/{id}")
 	public String boardDelete(@PathVariable("id") long id) {
 		boardRepository.deleteById(id);
 		return "redirect:/board";
 	}
-	
 
 }
