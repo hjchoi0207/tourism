@@ -20,9 +20,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="board : ${list}" th:attr="id=${board.id}">
-					<td th:text="${board.id}-1"></td>
+					<td th:text="${board.id}"></td>
 					<td th:text="${board.title}"></td>
-					<td th:text="${board.userId}"></td>
+					<td th:text="${board.user.email}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -66,7 +66,7 @@
 		});
 		$("tr").click(function () {
 			var id = $(this).attr("id");
-			location = "/board/" + id;
+			location = "/board" + id;
 			return false;
 		});
 	</script>
