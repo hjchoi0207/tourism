@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,10 +37,11 @@ public class BoardController {
 	}
 
 	@PostMapping("/board/write")
-	public String boardWritePost(@ModelAttribute Board board) {
-		User user = (User) session.getAttribute("user_info");
-		String userId = user.getEmail();
-		board.setUserId(userId);
+	public String boardWritePost(@ModelAttribute Board board, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+//		String userId = user.getEmail();
+//		board.setUserId(userId);
+		board.setUser(user);
 		boardRepository.save(board);
 		return "board/write";
 	}
