@@ -43,7 +43,7 @@ public class BoardController {
 //		board.setUserId(userId);
 		board.setUser(user);
 		boardRepository.save(board);
-		return "board/write";
+		return "redirect:/board";
 	}
 
 //	게시판 홈(리스트)
@@ -86,7 +86,7 @@ public class BoardController {
 
 	@PostMapping("/board/update/{id}")
 	public String boardUpdatePost(@ModelAttribute Board board, @PathVariable("id") long id) {
-		User user = (User) session.getAttribute("user_info");
+		User user = (User) session.getAttribute("user");
 		//String userId = user.getEmail();
 		//board.setUserId(userId);
 		board.setUser(user);

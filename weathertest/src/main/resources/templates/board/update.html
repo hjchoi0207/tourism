@@ -10,7 +10,7 @@
 	<nav class="navbar navbar-inverse" th:replace="common/nav">
 	</nav>
 	<div class="container">
-    <form action="/board/write" method="post" enctype="multipart/form-data">
+    <form th:action="@{/board/update/} + ${board.id}" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
             <div class="col-sm-10">
