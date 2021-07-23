@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="common/head">
 
@@ -15,12 +15,37 @@
 	</nav>
 
 	<ul class="area-list-img">
-		<li><div><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a><p>대구</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a><p>부산</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a><p>울산</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a><p>경남</p></div></li><!--대구-->
-		<li><div><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a><p>경북</p></div></li><!--대구-->
-		
+		<li>
+			<div><a href="/areaList?areacode=4"><img src="/areaList_4_daegu.png"></a>
+				<p>대구</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a>
+				<p>부산</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a>
+				<p>울산</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a>
+				<p>경남</p>
+			</div>
+		</li>
+		<!--대구-->
+		<li>
+			<div><a href="/areaList?areacode=36"><img src="/areaList_36_namhae.png"></a>
+				<p>경북</p>
+			</div>
+		</li>
+		<!--대구-->
+
 		<!--<li><a href="/areaList?areacode=6"><img src="/areaList_busan.png"></a></li>
 		<li><a href="/areaList?areacode=7"><img src="/areaList_7_ulsan.png"></a></li>
 		<li><a href="/areaList?areacode=35"><img src="/areaList_35_gyeongbuk.png"></a></li>
@@ -35,8 +60,7 @@
 			<div class="card">
 				<a href="#"
 					th:href="@{'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=' + ${area.title}}">
-					<img th:src="${area.firstimage}" class="card-img-top" alt="..."
-						onerror="src='/logo.png'">
+					<img th:src="${area.firstimage}" class="card-img-top" alt="..." onerror="src='/logo.png'">
 				</a>
 				<div class="card-body">
 					<span class="card-title">
@@ -53,20 +77,19 @@
 			</div>
 		</div>
 	</div>
-<div style="margin: 0 auto; width: 800px; text-align: center;" >
-	<ul class="pagination" style="justify-content: center;" 
-	th:with="startIdx=${T(Math).floor(areaList.number/10)}*10+1,
+	<div style="margin: 0 auto; width: 800px; text-align: center;">
+		<ul class="pagination" style="justify-content: center;" th:with="startIdx=${T(Math).floor(areaList.number/10)}*10+1,
     			    	lastIdx=(${areaList.totalPages} > ${startIdx}+9) ? ${startIdx}+9 : ${areaList.totalPages}">
-		<li th:class="${areaList.first} ? 'disabled'">
-			<a class="page-link" th:href="${areaList.first} ? '#' : @{/allAreaList(page=${startIdx}-1)}"
-				aria-label="Previous">&laquo;</a>
-		</li>
+			<li th:class="${areaList.first} ? 'disabled'">
+				<a class="page-link" th:href="${areaList.first} ? '#' : @{/allAreaList(page=${startIdx}-1)}"
+					aria-label="Previous">&laquo;</a>
+			</li>
 
-		<li th:style="${areaList.first}">
-			<a class="page-link" th:href="@{/allAreaList(page=${areaList.number})}">&lsaquo;</a>
-		</li>
+			<li th:style="${areaList.first}">
+				<a class="page-link" th:href="@{/allAreaList(page=${areaList.number})}">&lsaquo;</a>
+			</li>
 
-		<li th:class="(${page} == ${areaList.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
+			<li th:class="(${page} == ${areaList.number}+1)" th:each="page: ${#numbers.sequence(startIdx, lastIdx)}">
         	<a class="page-link" th:text="${page}" th:href="@{/allAreaList(page=${page})}"></a>
     	</li>
 
