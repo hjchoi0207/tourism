@@ -5,8 +5,20 @@
       <li><a class="navbar-brand" href="/"><img src="/logo.png" /></a></li>
       <li style="transform: translateY(33px);"><a class="navbar-brand" href="/"><img src="/home.png" /></a></li>
       <li style="transform: translateY(37px);"><a class="navbar-brand" href="/allAreaList"><img src="/info.png" /></a></li>
-      <li style="transform: translateY(36px);"><a class="navbar-brand" href="/"><img src="/review.png" /></a></li>
+      <li style="transform: translateY(36px);"><a class="navbar-brand" href="/board"><img src="/review.png" /></a></li>
 
     </ul>
+   	 <ul style="transform: translate3d(1100px,-60px,0);" class="nav sign">
+				<li th:if="${session.user_info} == null">
+					<a href="/signin">
+					<img src="/signin.png" />
+					</a>
+				</li>
+				<li th:if="${session.user_info} != null">
+					<a href="/signout">
+						<img src="/signout.png" />
+					</a>
+				</li>
+			</ul>
   </div>
 </nav>
