@@ -1,3 +1,40 @@
+<p align="center"><img src="https://user-images.githubusercontent.com/44575072/127271143-dccef01e-ac3c-446c-8b24-3f3345fb5c19.png"></p>
+
+***코로나, 미세먼지, 날씨 정보를 활용해 최적의 관광지를 추천해주는 여기로 가 입니다.***
+  
+<br/>
+
+### 개발환경
+- Eclipse
+- Oracle
+- Github
+- Open API
+
+
+### 사용기술
+* Spring boot
+  * JAVA 11
+  * Maven
+  * Spring Data JPA
+  
+* Database
+  * Oracle
+  
+* FrontEnd
+  * JavaScript
+  * Thymeleaf
+
+
+### 팀 소개
+- 김영석 : 레이아웃
+- 박준성 : 게시판 
+- 신재영 : DB, 메인페이지
+- 최현진 : DB, 관광정보 페이지
+
+<br/>
+<br/>
+<hr>
+
 ## STS 환경에서 Github 연동하는 과정입니다.
   - 반드시 개인 브랜치에서 작업 후 merge한다.
   - 브랜치명은 각자의 이름으로한다
