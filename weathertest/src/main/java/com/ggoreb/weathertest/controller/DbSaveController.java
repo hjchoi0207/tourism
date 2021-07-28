@@ -44,6 +44,12 @@ public class DbSaveController {
 	@Autowired
 	AreaTempRepository areaTempRepository;
 
+	private final String covidKey ="2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D";
+	private final String AirKey = "2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D";
+	private final String WeatherKey = "2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D";
+	private final String TourKey = "MUMreSgE%2BSS7myJQ4TQvAZ4v3GKdHjY4w58566xQLA%2Fvt702075b8IUFHfFyv96B3l6j%2FyksrgR%2FY2yAeUIruA%3D%3D";
+	
+	
 	private static String getTagValue(String tag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
 		Node nValue = (Node) nlList.item(0);
@@ -52,13 +58,16 @@ public class DbSaveController {
 		return nValue.getNodeValue();
 	}
 
+	
 	@GetMapping("/covid")
 	public void covid() {
 		Covid covid = new Covid();
 		try {
-			String url = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20210722&endCreateDt=20210722";
+			String covidUrl = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey="
+					+ covidKey
+					+ "&pageNo=1&numOfRows=10&startCreateDt=20210722&endCreateDt=20210722";
 
-			Document documentInfo = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url);
+			Document documentInfo = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(covidUrl);
 
 			// root tag
 			documentInfo.getDocumentElement().normalize();
@@ -88,14 +97,16 @@ public class DbSaveController {
 		}
 	}
 	
+	
 	@GetMapping("/air")
 	public String[] air() {
 		RestTemplate rt = new RestTemplate();
 		RequestEntity requestEntity = null;
-
 		try {
 			requestEntity = RequestEntity.get(new URI(
-					"http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=2021-07-22&returnType=json&serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D&numOfRows=100&pageNo=1"))
+					"http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=2021-07-22&returnType=json&serviceKey="
+					+ AirKey
+					+ "&numOfRows=100&pageNo=1"))
 					.build();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -146,7 +157,8 @@ public class DbSaveController {
 		try {
 			requestEntity = RequestEntity
 					.get(new URI("http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?"
-							+ "serviceKey=2Ty16FHtqKEzO%2BqOMfaqyU6BjHFRao4HW4JyAjbvZMjbIucyPrl2CX%2FKNWBsO6WMLVHsse8zTQwdew1%2BESQsfA%3D%3D"
+							+ "serviceKey="
+							+ WeatherKey
 							+ "&dataType=json" + "&numOfRows=10" + "&pageNo=1" + "&base_date=20210722"
 							+ "&base_time=0800" + "&nx=89" + "&ny=91"))
 					.build();
@@ -184,11 +196,7 @@ public class DbSaveController {
 		weatherRepository.save(weather);
 		return item;
 	}
-
-	
-	private final String TourKey = "MUMreSgE%2BSS7myJQ4TQvAZ4v3GKdHjY4w58566xQLA%2Fvt702075b8IUFHfFyv96B3l6j%2FyksrgR%2FY2yAeUIruA%3D%3D";
 	private final String TourUrl = "http://api.visitkorea.or.kr/openapi/service/rest/KorService";
-
 	// **** [ AreaBasedList ] AreaCode로 관광지정보 조회 *****************
 	// addr1, areaCode, x,y, tel, title, firstimage
 	@GetMapping("/api3")
@@ -196,7 +204,8 @@ public class DbSaveController {
 		RestTemplate rt = new RestTemplate();
 		RequestEntity requestEntity = null;
 		try {
-			requestEntity = RequestEntity.get(new URI(TourUrl + "/areaBasedList" + "?serviceKey=" + TourKey
+			requestEntity = RequestEntity.get(new URI(TourUrl + "/areaBasedList" 
+					+ "?serviceKey=" + TourKey
 					+ "&numOfRows=100" + "&pageNo=1" + "&MobileOS=ETC" + "&MobileApp=AppTest" + "&arrange=A"
 					+ "&contentTypeId=15" + "&areaCode=4"// 4,6,7,35,36
 					+ "&listYN=Y" + "&_type=json")).build();
