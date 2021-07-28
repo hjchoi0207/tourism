@@ -4,14 +4,14 @@
   
 <br/>
 
-### 개발환경
+## 개발환경
 - Eclipse
 - Oracle
 - Github
 - Open API
 
 
-### 사용기술
+## 사용기술
 * Spring boot
   * JAVA 11
   * Maven
@@ -25,21 +25,25 @@
   * Thymeleaf
 
 
-### 팀 소개
-- 김영석 : 레이아웃
-- 박준성 : 게시판 
-- 신재영 : DB, 메인페이지
-- 최현진 : DB, 관광정보 페이지
+## 팀 소개
+- [김영석](https://github.com/yeongseokdev) - 레이아웃
+- [박준성](https://github.com/JUNSEONG97) - 게시판 
+- [신재영](https://github.com/tsd02150) - DB, 메인페이지
+- [최현진](https://github.com/hjchoi0207) - DB, 관광정보 페이지
+
+## 발표자료
+[여기로 가 발표자료]()
 
 <br/>
 <br/>
 <hr>
+<br/>
 
 ## STS 환경에서 Github 연동하는 과정입니다.
   - 반드시 개인 브랜치에서 작업 후 merge한다.
   - 브랜치명은 각자의 이름으로한다
   - push전 master branch pull은 필수로 이행한다.
-  - 별도의 Pakage 추가 시 카톡에 알려준다
+  - 별도의 Pakage 추가 시 즉시 psuh & 알려준다.
   
 ## 1. Local에 Repository Clone
 1. (STS 상단 메뉴) : [Window] > [Show View] > [Other] > [Git] > [Git Repositories] 선택
