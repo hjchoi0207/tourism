@@ -1,6 +1,6 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/44575072/127271143-dccef01e-ac3c-446c-8b24-3f3345fb5c19.png"></p>
 
-***코로나, 미세먼지, 날씨 정보를 활용해 최적의 관광지를 추천해주는 여기로 가 입니다.***
+***코로나, 미세먼지, 날씨 API 정보를 활용해 여행 가기 최적화된 경상도 관광지를 추천해주는 여기로 가 입니다.***
   
 <br/>
 
