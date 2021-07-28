@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: weathertest
-Bundle-SymbolicName: weathertest
+Bundle-SymbolicName: tourism
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-16
 Automatic-Module-Name: weathertest
