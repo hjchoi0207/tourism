@@ -32,7 +32,7 @@
 - [최현진](https://github.com/hjchoi0207) - DB, 관광정보 페이지
 
 ## 발표자료
-[여기로 가 발표자료](https://github.com/hjchoi0207/tourism/files/6890820/modulproject.pptx)
+[발표자료 다운로드](https://github.com/hjchoi0207/tourism/files/6890820/modulproject.pptx)
 
 <br/>
 <br/>
